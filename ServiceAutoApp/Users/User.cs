@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceAutoApp.User
+namespace ServiceAutoApp.Users
 {
-    public class NormalUser
+    public class User
     {
         public int userId { get; set; }
         public string username { get; set; }
@@ -18,7 +18,7 @@ namespace ServiceAutoApp.User
         public string address { get; set; }
         public DateTime registeredDate { get; set; }
 
-        public NormalUser(
+        public User(
             int userId, 
             string username, 
             string password, 

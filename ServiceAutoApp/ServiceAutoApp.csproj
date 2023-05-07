@@ -9,9 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Car\" />
     <Folder Include="Customer\" />
-    <Folder Include="User\" />
   </ItemGroup>
 
 </Project>

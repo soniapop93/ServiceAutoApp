@@ -11,6 +11,7 @@
         public string phone { get; set; }
         public string address { get; set; }
         public DateTime registeredDate { get; set; }
+        public bool adminUser { get; set; }
 
         public User(
             int userId, 
@@ -21,7 +22,8 @@
             string email, 
             string phone, 
             string address, 
-            DateTime registeredDate)
+            DateTime registeredDate, 
+            bool adminUser)
         {
             this.userId = userId;
             this.username = username;
@@ -32,6 +34,7 @@
             this.phone = phone;
             this.address = address;
             this.registeredDate = registeredDate;
+            this.adminUser = adminUser;
         }
     }
 }

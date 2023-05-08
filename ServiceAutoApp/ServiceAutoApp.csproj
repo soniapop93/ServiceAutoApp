@@ -9,7 +9,10 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Customer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
 
 </Project>

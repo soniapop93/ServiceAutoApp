@@ -1,4 +1,7 @@
 ﻿using System.Data.SQLite;
+using ServiceAutoApp.Customers;
+using ServiceAutoApp.Users;
+using ServiceAutoApp.Customers;
 
 namespace ServiceAutoApp.Database
 {
@@ -79,6 +82,76 @@ namespace ServiceAutoApp.Database
                 "fuelType TEXT, " +
                 "color TEXT, " +
                 "registredDate TEXT);";
+
+            sqLiteConnection.Open();
+            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
+            sqLiteCommand.CommandText = strSql;
+            sqLiteCommand.ExecuteNonQuery();
+            sqLiteConnection.Close();
+        }
+
+        public void createTableCarParts()
+        {
+            string strSql = "CREATE TABLE IF NOT EXISTS CarParts " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "carID INTEGER, " +
+                "status TEXT, " +
+                "carPartName TEXT, " +
+                "carPartDescription TEXT, " +
+                "registredDate TEXT, " +
+                "price INTEGER);";
+
+            sqLiteConnection.Open();
+            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
+            sqLiteCommand.CommandText = strSql;
+            sqLiteCommand.ExecuteNonQuery();
+            sqLiteConnection.Close();
+        }
+
+        public void insertDataUsers(User user)
+        {
+            string strSql = "INSERT INTO Users " +
+                "(username, " +
+                "password, " +
+                "firstName, " +
+                "lastName, " +
+                "email, " +
+                "phone, " +
+                "address, " +
+                "registredDate, " +
+                "admin) VALUES ('" + 
+                user.username + "','" + 
+                user.password + "','" + 
+                user.firstName + "','" + 
+                user.lastName + "','" + 
+                user.email + "','" + 
+                user.phone + "','" +
+                user.address + "','" + 
+                user.registeredDate + "','" + 
+                user.adminUser.ToString() + "');";
+
+            sqLiteConnection.Open();
+            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
+            sqLiteCommand.CommandText = strSql;
+            sqLiteCommand.ExecuteNonQuery();
+            sqLiteConnection.Close();
+        }
+
+        public void insertDataCustomers(Customer customer)
+        {
+            string strSql = "INSERT INTO Customers " +
+                "(firstName, " +
+                "lastName, " +
+                "phone, " +
+                "address, " +
+                "email, " +
+                "registredDate) VALUES ('" +
+                customer.firstName + "','" +
+                customer.lastName + "','" +
+                customer.phone + "','" +
+                customer.address + "','" +
+                customer.email + "','" +
+                customer.registredDate.ToString() + "');";
 
             sqLiteConnection.Open();
             SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();

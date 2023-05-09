@@ -2,6 +2,7 @@
 using ServiceAutoApp.Customers;
 using ServiceAutoApp.Users;
 using ServiceAutoApp.Customers;
+using ServiceAutoApp.Cars;
 
 namespace ServiceAutoApp.Database
 {
@@ -44,11 +45,7 @@ namespace ServiceAutoApp.Database
                 "registredDate TEXT, " +
                 "admin TEXT);";
 
-            sqLiteConnection.Open();
-            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
-            sqLiteCommand.CommandText = strSql;
-            sqLiteCommand.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            insertDataInDB(strSql);
         }
 
         public void createTableCustomers()
@@ -63,11 +60,7 @@ namespace ServiceAutoApp.Database
                 "email TEXT, " +
                 "registredDate TEXT);";
 
-            sqLiteConnection.Open();
-            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
-            sqLiteCommand.CommandText = strSql;
-            sqLiteCommand.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            insertDataInDB(strSql);
         }
 
         public void createTableCars()
@@ -83,11 +76,7 @@ namespace ServiceAutoApp.Database
                 "color TEXT, " +
                 "registredDate TEXT);";
 
-            sqLiteConnection.Open();
-            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
-            sqLiteCommand.CommandText = strSql;
-            sqLiteCommand.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            insertDataInDB(strSql);
         }
 
         public void createTableCarParts()
@@ -101,11 +90,7 @@ namespace ServiceAutoApp.Database
                 "registredDate TEXT, " +
                 "price INTEGER);";
 
-            sqLiteConnection.Open();
-            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
-            sqLiteCommand.CommandText = strSql;
-            sqLiteCommand.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            insertDataInDB(strSql);
         }
 
         public void insertDataUsers(User user)
@@ -130,11 +115,7 @@ namespace ServiceAutoApp.Database
                 user.registeredDate + "','" + 
                 user.adminUser.ToString() + "');";
 
-            sqLiteConnection.Open();
-            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
-            sqLiteCommand.CommandText = strSql;
-            sqLiteCommand.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            insertDataInDB(strSql);
         }
 
         public void insertDataCustomers(Customer customer)
@@ -153,6 +134,30 @@ namespace ServiceAutoApp.Database
                 customer.email + "','" +
                 customer.registredDate.ToString() + "');";
 
+            insertDataInDB(strSql);
+        }
+
+        public void insertDataCarParts(CarPart carPart)
+        {
+            string strSql = "INSERT INTO CarParts " +
+                "(carID, " +
+                "status, " +
+                "carPartName, " +
+                "carPartDescription, " +
+                "registredDate, " +
+                "price) VALUES (" + 
+                carPart.carId + ",'" + 
+                carPart.status + "','" + 
+                carPart.carPartName + "','" + 
+                carPart.carPartDescription + "','" + 
+                carPart.registreationDate + "'," + 
+                carPart.price + ");";
+
+            insertDataInDB(strSql);
+        }
+
+        private void insertDataInDB(string strSql)
+        {
             sqLiteConnection.Open();
             SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
             sqLiteCommand.CommandText = strSql;

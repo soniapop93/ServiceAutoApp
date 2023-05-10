@@ -164,5 +164,45 @@ namespace ServiceAutoApp.Database
             sqLiteCommand.ExecuteNonQuery();
             sqLiteConnection.Close();
         }
+
+        public User getUser(string username, string password)
+        {
+            sqLiteConnection.Open();
+            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
+
+            string strData = "SELECT * FROM Users WHERE username = " + username + ";";
+            sqLiteCommand.CommandText = strData;
+            SQLiteDataReader allDBdata = sqLiteCommand.ExecuteReader();
+
+            User user = checkUser(allDBdata, password);
+
+            allDBdata.Close();
+            sqLiteConnection.Close();
+
+            return user;
+        }
+
+        private User checkUser(SQLiteDataReader allDBdata, string password)
+        {
+            while (allDBdata.Read())
+            {
+                if (password.Equals(allDBdata[3].ToString()) {
+                    User user = new User(
+                        Int32.Parse(allDBdata[0].ToString()), 
+                        allDBdata[1].ToString(), 
+                        allDBdata[2].ToString(), 
+                        allDBdata[3].ToString(), 
+                        allDBdata[4].ToString(),
+                        allDBdata[5].ToString(), 
+                        allDBdata[6].ToString(), 
+                        allDBdata[7].ToString(), 
+                        DateTime.Parse(allDBdata[8].ToString()), 
+                        Boolean.Parse(allDBdata[8].ToString()));
+
+                    return user;
+                }
+            }
+            return null;
+        }
     }
 }

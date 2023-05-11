@@ -30,10 +30,30 @@ namespace ServiceAutoApp.Logic
 
                 if (adminUser)
                 {
+                    string optionMenu = "Option menu: " +
+                        "1 - Edit user \n" +
+                        "2 - Delete user \n" +
+                        "3 - Add new customer \n" +
+                        "4 - Delete customer \n" +
+                        "5 - Add new car \n" +
+                        "6 - Delete car \n" +
+                        "7 - Service request \n" +
+                        "8 - EXIT";
+                    
+                    Console.WriteLine(optionMenu);
+
                     //TODO: implement logic for admin user
                 }
                 else
                 {
+                    string optionMenu = "Option menu: " +
+                        "1 - Add new customer \n" +
+                        "2 - Add new car \n" +
+                        "3 - Service request \n" +
+                        "4 - EXIT";
+
+                    Console.WriteLine(optionMenu);
+
                     //TODO: implement logic for normal user
                 }
             }

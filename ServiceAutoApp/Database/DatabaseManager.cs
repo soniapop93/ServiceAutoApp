@@ -211,5 +211,12 @@ namespace ServiceAutoApp.Database
 
             insertDataInDB(strSql);
         }
+
+        public void updateUserByID(int userID, string field, string newInfo)
+        {
+            string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE id = " + userID + ";";
+
+            insertDataInDB(strSql);
+        }
     }
 }

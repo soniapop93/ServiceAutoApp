@@ -49,22 +49,13 @@ namespace ServiceAutoApp.Logic
                     {
                         default:
                             break;
-                        case "1":
+                        case "1": // 1 - Edit user
                             Console.WriteLine("You have selected option: 1 - Edit user");
                             Console.WriteLine("Please select how you want to search the user by: \n" +
                                 "1 - Username \n" +
                                 "2 - User ID");
 
-                            string optionField = userInput.getUserInput();
-                            switch (optionField)
-                            {
-                                default:
-                                    break;
-                                case "1":
-                                    Console.WriteLine("Please add the username: ");
-                                    string usernameInputToUpdate = userInput.getUserInput();
-
-                                    Console.WriteLine("Fields available to edit, please choose one from: \n" +
+                            string fieldsToEdit = "Fields available to edit, please choose one from: \n" +
                                         "1 - Username \n" +
                                         "2 - Password \n" +
                                         "3 - First Name \n" +
@@ -72,33 +63,60 @@ namespace ServiceAutoApp.Logic
                                         "5 - Email \n" +
                                         "6 - Phone \n" +
                                         "7 - Address \n" +
-                                        "8 - Admin");
+                                        "8 - Admin";
 
-                                    string optionToEdit = userInput.getUserInput();
+                            string optionField = userInput.getUserInput();
+                            switch (optionField)
+                            {
+                                default:
+                                    break;
+                                case "1": // 1 - Username
+                                    Console.WriteLine("Please add the username: ");
+                                    string usernameInputToUpdate = userInput.getUserInput();
 
-                                    string field = switchEditUserByAdmin(optionToEdit);
+                                    Console.WriteLine(fieldsToEdit);
 
-                                    if (!String.IsNullOrEmpty(field))
+                                    string optionToEditUsername = userInput.getUserInput();
+
+                                    string fieldUsername = switchEditUserByAdmin(optionToEditUsername);
+
+                                    if (!String.IsNullOrEmpty(fieldUsername))
                                     {
                                         Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
                                         string newInfo = userInput.getUserInput();
-                                        databaseManager.updateUserByUsername(usernameInputToUpdate, field, newInfo);
+                                        databaseManager.updateUserByUsername(usernameInputToUpdate, fieldUsername, newInfo);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No correct option selected");
+                                    }
+                                    break;
+                                case "2": // 2 - User ID
+                                    Console.WriteLine("Please add the user ID: ");
+                                    int userIdInputToUpdate = Int32.Parse(userInput.getUserInput());
+
+                                    Console.WriteLine(fieldsToEdit);
+
+                                    string optionToEditID = userInput.getUserInput();
+
+                                    string fieldID = switchEditUserByAdmin(optionToEditID);
+
+                                    if(!String.IsNullOrEmpty(fieldID))
+                                    {
+                                        Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
+                                        string newInfo = userInput.getUserInput();
+                                        databaseManager.updateUserByID(userIdInputToUpdate, fieldID, newInfo);
                                     }
                                     else
                                     {
                                         Console.WriteLine("No correct option selected");
                                     }
 
-                                    
-
-
-                                    break;
-                                case "2":
                                     break;
                             }
-
                             break;
-                        case "2":
+
+                        case "2": // 2 - Delete user
                             break;
                         case "3":
                             break;

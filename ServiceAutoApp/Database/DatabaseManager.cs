@@ -205,9 +205,9 @@ namespace ServiceAutoApp.Database
             return null;
         }
 
-        public void updateUser(int userID, string field, string newInfo)
+        public void updateUserByUsername(string username, string field, string newInfo)
         {
-            string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE id = " + userID + ";";
+            string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE username = '" + username + "';";
 
             insertDataInDB(strSql);
         }

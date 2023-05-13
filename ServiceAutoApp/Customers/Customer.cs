@@ -10,7 +10,7 @@ namespace ServiceAutoApp.Customers
         public string phone { get; set; }
         public string address { get; set; }
         public string email { get; set; }
-        public List<Car> cars { get; set; }
+        public List<Car> cars { get; set; } = new List<Car>();
         public DateTime registredDate { get; set; }
 
         public Customer(
@@ -19,8 +19,7 @@ namespace ServiceAutoApp.Customers
             string lastName, 
             string phone, 
             string address, 
-            string email, 
-            List<Car> cars, 
+            string email,
             DateTime registredDate)
         {
             this.customerId = customerId;
@@ -29,7 +28,6 @@ namespace ServiceAutoApp.Customers
             this.phone = phone;
             this.address = address;
             this.email = email;
-            this.cars = cars;
             this.registredDate = registredDate;
         }
     }

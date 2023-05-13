@@ -156,6 +156,28 @@ namespace ServiceAutoApp.Database
             insertDataInDB(strSql);
         }
 
+        public void insertDataCar(Car car)
+        {
+            string strSql = "INSERT INTO Cars " +
+                "(customerID, " +
+                "carNumber, " +
+                "vinNumber, " +
+                "year, " +
+                "engineCapacity, " +
+                "fuelType, " +
+                "color, " +
+                "registredDate) VALUES (" +
+                car.customerId + ",'" +
+                car.carNumber + "','" +
+                car.vinNumber + "'," +
+                car.year + "," +
+                car.engineCapacity + ",'" +
+                car.color + "','" +
+                car.registrationDate.ToString() + "');";
+
+            insertDataInDB(strSql);
+        }
+
         private void insertDataInDB(string strSql)
         {
             sqLiteConnection.Open();

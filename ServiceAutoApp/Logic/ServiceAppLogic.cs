@@ -1,4 +1,5 @@
-﻿using ServiceAutoApp.Customers;
+﻿using ServiceAutoApp.Cars;
+using ServiceAutoApp.Customers;
 using ServiceAutoApp.Database;
 using ServiceAutoApp.Users;
 using System;
@@ -162,7 +163,59 @@ namespace ServiceAutoApp.Logic
                             break;
                         case "4":
                             break;
-                        case "5":
+                        case "5": // 5 - Add new car
+                            Console.WriteLine("You have selected option: 5 - Add new car");
+
+                            Console.WriteLine("Customer ID: ");
+                            string carCustomerID = userInput.getUserInput();
+
+                            Console.WriteLine("Car number: ");
+                            string carNumber = userInput.getUserInput();
+
+                            Console.WriteLine("VIN number: ");
+                            string carVIN = userInput.getUserInput();
+
+                            Console.WriteLine("Year: ");
+                            string yearCar = userInput.getUserInput();
+
+                            Console.WriteLine("Engine capacity: ");
+                            string engineCapacityCar = userInput.getUserInput();
+
+                            Console.WriteLine("Fuel Type: ");
+                            string fuelTypeCar = userInput.getUserInput();
+
+                            Console.WriteLine("Color: ");
+                            string colorCar = userInput.getUserInput();
+
+                            if (!String.IsNullOrEmpty(carCustomerID) && 
+                                !String.IsNullOrEmpty(carNumber) && 
+                                !String.IsNullOrEmpty(carVIN) && 
+                                !String.IsNullOrEmpty(yearCar) && 
+                                !String.IsNullOrEmpty(engineCapacityCar) && 
+                                !String.IsNullOrEmpty(fuelTypeCar) && 
+                                !String.IsNullOrEmpty(colorCar))
+                            {
+                                DateTime registredDateCar = DateTime.Now;
+                                Car car = new Car(
+                                    0, 
+                                    Int32.Parse(carCustomerID), 
+                                    carNumber, 
+                                    carVIN, 
+                                    Int32.Parse(yearCar), 
+                                    Int32.Parse(engineCapacityCar), 
+                                    fuelTypeCar, 
+                                    colorCar, 
+                                    registredDateCar);
+
+                                databaseManager.insertDataCar(car);
+
+                                Console.WriteLine("Car registered succesfully");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Some fields were left empty. Please complete them again!");
+                            }
+
                             break;
                         case "6":
                             break;

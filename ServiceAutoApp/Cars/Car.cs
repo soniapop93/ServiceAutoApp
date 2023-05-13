@@ -10,7 +10,7 @@
         public int engineCapacity { get; set; }
         public string fuelType { get; set; }
         public string color { get; set; }
-        List<CarPart> carParts { get; set; }
+        List<CarPart> carParts { get; set; } = new List<CarPart>();
         public DateTime registrationDate { get; set; }
 
         public Car(
@@ -22,7 +22,6 @@
             int engineCapacity, 
             string fuelType, 
             string color, 
-            List<CarPart> carParts, 
             DateTime registrationDate)
         {
             this.carId = carId;
@@ -33,7 +32,6 @@
             this.engineCapacity = engineCapacity;
             this.fuelType = fuelType;
             this.color = color;
-            this.carParts = carParts;
             this.registrationDate = registrationDate;
         }
     }

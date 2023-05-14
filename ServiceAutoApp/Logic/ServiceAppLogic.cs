@@ -120,6 +120,19 @@ namespace ServiceAutoApp.Logic
                             break;
 
                         case "2": // 2 - Delete user
+                            Console.WriteLine("You have selected option: 2 - Delete user");
+
+                            Console.WriteLine("Add User ID you want to delete: ");
+                            string userIdDelete = userInput.getUserInput();
+
+                            if (!String.IsNullOrEmpty(userIdDelete))
+                            {
+                                databaseManager.deleteUser(Int32.Parse(userIdDelete));
+                            }
+                            else
+                            {
+                                Console.Write("Some fields were left empty. Please complete them again!");
+                            }
                             break;
 
                         case "3": // 3 - Add new customer

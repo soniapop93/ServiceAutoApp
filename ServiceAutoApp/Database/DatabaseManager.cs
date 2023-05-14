@@ -254,5 +254,13 @@ namespace ServiceAutoApp.Database
 
             executeDataInDB(strSql);
         }
-    }
+
+        public void deleteUser(int userID)
+        {
+            string strSql = "DELETE FROM Users WHERE id = " + userID + " AND admin = 'False';";
+
+            executeDataInDB(strSql);
+        }
+    }   
+
 }

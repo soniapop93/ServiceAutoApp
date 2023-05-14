@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -120,6 +121,7 @@ namespace ServiceAutoApp.Logic
 
                         case "2": // 2 - Delete user
                             break;
+
                         case "3": // 3 - Add new customer
                             Console.WriteLine("You have selected option: 3 - Add new customer");
 
@@ -161,8 +163,23 @@ namespace ServiceAutoApp.Logic
                                 Console.Write("Some fields were left empty. Please complete them again!");
                             }
                             break;
-                        case "4":
+
+                        case "4": // 4 - Delete customer
+                            Console.WriteLine("You have selected option: 4 - Delete customer");
+                            
+                            Console.WriteLine("Customer ID you want to delete: ");
+                            string deleteCustomerID = userInput.getUserInput();
+
+                            if (!String.IsNullOrEmpty(deleteCustomerID))
+                            {
+                                databaseManager.deteleCustomer(Int32.Parse(deleteCustomerID));
+                            }
+                            else
+                            {
+                                Console.WriteLine("Some fields were left empty.Please complete them again!");
+                            }
                             break;
+
                         case "5": // 5 - Add new car
                             Console.WriteLine("You have selected option: 5 - Add new car");
 
@@ -217,8 +234,22 @@ namespace ServiceAutoApp.Logic
                             }
 
                             break;
-                        case "6":
+                        case "6": // 6 - Delete car
+                            Console.WriteLine("You have selected option: 6 - Delete car");
+                            Console.WriteLine("Car number you want to delete: ");
+                            
+                            string deleteCarNumber = userInput.getUserInput();
+                            
+                            if (!String.IsNullOrEmpty(deleteCarNumber))
+                            {
+                                databaseManager.deleteCar(deleteCarNumber);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Some fields were left empty.Please complete them again!");
+                            }
                             break;
+                        
                         case "7":
                             break;
                         case "8":

@@ -45,7 +45,7 @@ namespace ServiceAutoApp.Database
                 "registredDate TEXT, " +
                 "admin TEXT);";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void createTableCustomers()
@@ -60,7 +60,7 @@ namespace ServiceAutoApp.Database
                 "email TEXT, " +
                 "registredDate TEXT);";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void createTableCars()
@@ -76,7 +76,7 @@ namespace ServiceAutoApp.Database
                 "color TEXT, " +
                 "registredDate TEXT);";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void createTableCarParts()
@@ -90,7 +90,7 @@ namespace ServiceAutoApp.Database
                 "registredDate TEXT, " +
                 "price INTEGER);";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void insertDataUsers(User user)
@@ -115,7 +115,7 @@ namespace ServiceAutoApp.Database
                 user.registeredDate + "','" + 
                 user.adminUser.ToString() + "');";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void insertDataCustomers(Customer customer)
@@ -134,7 +134,7 @@ namespace ServiceAutoApp.Database
                 customer.email + "','" +
                 customer.registredDate.ToString() + "');";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void insertDataCarParts(CarPart carPart)
@@ -153,7 +153,7 @@ namespace ServiceAutoApp.Database
                 carPart.registreationDate + "'," + 
                 carPart.price + ");";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void insertDataCar(Car car)
@@ -175,10 +175,10 @@ namespace ServiceAutoApp.Database
                 car.color + "','" +
                 car.registrationDate.ToString() + "');";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
-        private void insertDataInDB(string strSql)
+        private void executeDataInDB(string strSql)
         {
             sqLiteConnection.Open();
             SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
@@ -231,14 +231,28 @@ namespace ServiceAutoApp.Database
         {
             string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE username = '" + username + "';";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
         }
 
         public void updateUserByID(int userID, string field, string newInfo)
         {
             string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE id = " + userID + ";";
 
-            insertDataInDB(strSql);
+            executeDataInDB(strSql);
+        }
+
+        public void deleteCar(string carNumber)
+        {
+            string strSql = "DELETE FROM Cars WHERE carNumber = '" + carNumber + "';";
+            
+            executeDataInDB(strSql);
+        }
+
+        public void deteleCustomer(int customerID) 
+        {
+            string strSql = "DELETE FROM Customers WHERE id = " + customerID + ";";
+
+            executeDataInDB(strSql);
         }
     }
 }

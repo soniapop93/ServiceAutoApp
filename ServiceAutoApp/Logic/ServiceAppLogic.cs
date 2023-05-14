@@ -4,11 +4,7 @@ using ServiceAutoApp.Database;
 using ServiceAutoApp.Users;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceAutoApp.Logic
 {
@@ -263,13 +259,35 @@ namespace ServiceAutoApp.Logic
                             }
                             break;
                         
-                        case "7":
+                        case "7": // 7 - Service request
+                            Console.WriteLine("You have selected option: 7 - Service request");
                             break;
-                        case "8":
+
+                        case "8": // 8 - EXIT
+                            Console.WriteLine("You have selected option: 8 - EXIT");
+
+                            Console.WriteLine("Add Customer ID: ");
+                            string customerIDServiceRequest = userInput.getUserInput();
+
+                            Console.WriteLine("Add car number: ");
+                            string carNumberServiceRequest = userInput.getUserInput();
+
+                            Console.WriteLine("Add car part name that needs to be replaced: ");
+                            string carPartNameServiceRequest = userInput.getUserInput();
+
+                            Console.WriteLine("Add car part description that needs to be replaced: ");
+                            string carPartDescriptionServiceRequest = userInput.getUserInput();
+
+                            Console.WriteLine("Add price: ");
+                            string carPartPriceServiceRequest = userInput.getUserInput();
+
+                            Console.WriteLine("Add status: ");
+                            string carPartStatusServiceRequest = userInput.getUserInput();
+
+                            // TODO: finish logic
+
                             break;
                     }
-
-                    //TODO: implement logic for admin user
                 }
                 else
                 {

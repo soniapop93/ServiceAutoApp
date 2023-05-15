@@ -134,43 +134,7 @@ namespace ServiceAutoApp.Logic
                         case "3": // 3 - Add new customer
                             Console.WriteLine("You have selected option: 3 - Add new customer");
 
-                            Console.WriteLine("First name: ");
-                            string firstNameCustomer = userInput.getUserInput();
-
-                            Console.WriteLine("Last name: ");
-                            string lastNameCustomer = userInput.getUserInput();
-
-                            Console.WriteLine("Phone number: ");
-                            string phoneNumberCustomer = userInput.getUserInput();
-
-                            Console.WriteLine("Address: ");
-                            string addressCustomer = userInput.getUserInput();
-
-                            Console.WriteLine("Email: ");
-                            string emailCustomer = userInput.getUserInput();
-
-                            if (!String.IsNullOrEmpty(firstNameCustomer) && 
-                                !String.IsNullOrEmpty(lastNameCustomer) && 
-                                !String.IsNullOrEmpty(phoneNumberCustomer) && 
-                                !String.IsNullOrEmpty(addressCustomer) && 
-                                !String.IsNullOrEmpty(emailCustomer))
-                            {
-                                DateTime registredDateCustomer = DateTime.Now;
-                                Customer customer = new Customer(
-                                    0, 
-                                    firstNameCustomer, 
-                                    lastNameCustomer, 
-                                    phoneNumberCustomer, 
-                                    addressCustomer, 
-                                    emailCustomer, 
-                                    registredDateCustomer);
-                                databaseManager.insertDataCustomers(customer);
-                                Console.WriteLine("New customer registered successfully");
-                            }
-                            else
-                            {
-                                Console.Write("Some fields were left empty. Please complete them again!");
-                            }
+                            addNewCustomer();
                             break;
 
                         case "4": // 4 - Delete customer
@@ -299,7 +263,13 @@ namespace ServiceAutoApp.Logic
 
                     Console.WriteLine(optionMenu);
 
-                    //TODO: implement logic for normal user
+                   switch (optionMenu)
+                    {
+                        case "1": // 1 - Add new customer
+                            Console.WriteLine("You have selected option: 1 - Add new customer");
+                            addNewCustomer();
+                            break;
+                    }
                 }
             }
         }
@@ -339,6 +309,47 @@ namespace ServiceAutoApp.Logic
                     break;
             }
             return field;
+        }
+
+        private void addNewCustomer()
+        {
+            Console.WriteLine("First name: ");
+            string firstNameCustomer = userInput.getUserInput();
+
+            Console.WriteLine("Last name: ");
+            string lastNameCustomer = userInput.getUserInput();
+
+            Console.WriteLine("Phone number: ");
+            string phoneNumberCustomer = userInput.getUserInput();
+
+            Console.WriteLine("Address: ");
+            string addressCustomer = userInput.getUserInput();
+
+            Console.WriteLine("Email: ");
+            string emailCustomer = userInput.getUserInput();
+
+            if (!String.IsNullOrEmpty(firstNameCustomer) &&
+                !String.IsNullOrEmpty(lastNameCustomer) &&
+                !String.IsNullOrEmpty(phoneNumberCustomer) &&
+                !String.IsNullOrEmpty(addressCustomer) &&
+                !String.IsNullOrEmpty(emailCustomer))
+            {
+                DateTime registredDateCustomer = DateTime.Now;
+                Customer customer = new Customer(
+                    0,
+                    firstNameCustomer,
+                    lastNameCustomer,
+                    phoneNumberCustomer,
+                    addressCustomer,
+                    emailCustomer,
+                    registredDateCustomer);
+                databaseManager.insertDataCustomers(customer);
+                Console.WriteLine("New customer registered successfully");
+            }
+            else
+            {
+                Console.Write("Some fields were left empty. Please complete them again!");
+            }
         }
     }
 }

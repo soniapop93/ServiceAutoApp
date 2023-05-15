@@ -156,57 +156,9 @@ namespace ServiceAutoApp.Logic
                         case "5": // 5 - Add new car
                             Console.WriteLine("You have selected option: 5 - Add new car");
 
-                            Console.WriteLine("Customer ID: ");
-                            string carCustomerID = userInput.getUserInput();
-
-                            Console.WriteLine("Car number: ");
-                            string carNumber = userInput.getUserInput();
-
-                            Console.WriteLine("VIN number: ");
-                            string carVIN = userInput.getUserInput();
-
-                            Console.WriteLine("Year: ");
-                            string yearCar = userInput.getUserInput();
-
-                            Console.WriteLine("Engine capacity: ");
-                            string engineCapacityCar = userInput.getUserInput();
-
-                            Console.WriteLine("Fuel Type: ");
-                            string fuelTypeCar = userInput.getUserInput();
-
-                            Console.WriteLine("Color: ");
-                            string colorCar = userInput.getUserInput();
-
-                            if (!String.IsNullOrEmpty(carCustomerID) && 
-                                !String.IsNullOrEmpty(carNumber) && 
-                                !String.IsNullOrEmpty(carVIN) && 
-                                !String.IsNullOrEmpty(yearCar) && 
-                                !String.IsNullOrEmpty(engineCapacityCar) && 
-                                !String.IsNullOrEmpty(fuelTypeCar) && 
-                                !String.IsNullOrEmpty(colorCar))
-                            {
-                                DateTime registredDateCar = DateTime.Now;
-                                Car car = new Car(
-                                    0, 
-                                    Int32.Parse(carCustomerID), 
-                                    carNumber, 
-                                    carVIN, 
-                                    Int32.Parse(yearCar), 
-                                    Int32.Parse(engineCapacityCar), 
-                                    fuelTypeCar, 
-                                    colorCar, 
-                                    registredDateCar);
-
-                                databaseManager.insertDataCar(car);
-
-                                Console.WriteLine("Car registered succesfully");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Some fields were left empty. Please complete them again!");
-                            }
-
+                            addNewCar();
                             break;
+
                         case "6": // 6 - Delete car
                             Console.WriteLine("You have selected option: 6 - Delete car");
                             Console.WriteLine("Car number you want to delete: ");
@@ -267,7 +219,14 @@ namespace ServiceAutoApp.Logic
                     {
                         case "1": // 1 - Add new customer
                             Console.WriteLine("You have selected option: 1 - Add new customer");
+
                             addNewCustomer();
+                            break;
+
+                        case "2": // 2 - Add new car
+                            Console.WriteLine("You have selected option: 2 - Add new car");
+
+                            addNewCar();
                             break;
                     }
                 }
@@ -349,6 +308,59 @@ namespace ServiceAutoApp.Logic
             else
             {
                 Console.Write("Some fields were left empty. Please complete them again!");
+            }
+        }
+
+        private void addNewCar()
+        {
+            Console.WriteLine("Customer ID: ");
+            string carCustomerID = userInput.getUserInput();
+
+            Console.WriteLine("Car number: ");
+            string carNumber = userInput.getUserInput();
+
+            Console.WriteLine("VIN number: ");
+            string carVIN = userInput.getUserInput();
+
+            Console.WriteLine("Year: ");
+            string yearCar = userInput.getUserInput();
+
+            Console.WriteLine("Engine capacity: ");
+            string engineCapacityCar = userInput.getUserInput();
+
+            Console.WriteLine("Fuel Type: ");
+            string fuelTypeCar = userInput.getUserInput();
+
+            Console.WriteLine("Color: ");
+            string colorCar = userInput.getUserInput();
+
+            if (!String.IsNullOrEmpty(carCustomerID) &&
+                !String.IsNullOrEmpty(carNumber) &&
+                !String.IsNullOrEmpty(carVIN) &&
+                !String.IsNullOrEmpty(yearCar) &&
+                !String.IsNullOrEmpty(engineCapacityCar) &&
+                !String.IsNullOrEmpty(fuelTypeCar) &&
+                !String.IsNullOrEmpty(colorCar))
+            {
+                DateTime registredDateCar = DateTime.Now;
+                Car car = new Car(
+                    0,
+                    Int32.Parse(carCustomerID),
+                    carNumber,
+                    carVIN,
+                    Int32.Parse(yearCar),
+                    Int32.Parse(engineCapacityCar),
+                    fuelTypeCar,
+                    colorCar,
+                    registredDateCar);
+
+                databaseManager.insertDataCar(car);
+
+                Console.WriteLine("Car registered succesfully");
+            }
+            else
+            {
+                Console.WriteLine("Some fields were left empty. Please complete them again!");
             }
         }
     }

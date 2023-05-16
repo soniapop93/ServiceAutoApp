@@ -175,50 +175,7 @@ namespace ServiceAutoApp.Logic
                         case "7": // 7 - Service request
                             Console.WriteLine("You have selected option: 7 - Service request");
 
-                            Console.WriteLine("Add Customer ID: ");
-                            string customerIDServiceRequest = userInput.getUserInput();
-
-                            Console.WriteLine("Add car number: ");
-                            string carNumberServiceRequest = userInput.getUserInput();
-
-                            Console.WriteLine("Add car part name that needs to be replaced: ");
-                            string carPartNameServiceRequest = userInput.getUserInput();
-
-                            Console.WriteLine("Add car part description that needs to be replaced: ");
-                            string carPartDescriptionServiceRequest = userInput.getUserInput();
-
-                            Console.WriteLine("Add price: ");
-                            string carPartPriceServiceRequest = userInput.getUserInput();
-
-                            Console.WriteLine("Add status: ");
-                            string carPartStatusServiceRequest = userInput.getUserInput();
-
-                            if (!String.IsNullOrEmpty(customerIDServiceRequest) && 
-                                !String.IsNullOrEmpty(carNumberServiceRequest) && 
-                                !String.IsNullOrEmpty(carPartNameServiceRequest) && 
-                                !String.IsNullOrEmpty(carPartDescriptionServiceRequest) && 
-                                !String.IsNullOrEmpty(carPartPriceServiceRequest) && 
-                                !String.IsNullOrEmpty(carPartStatusServiceRequest))
-                            {
-                                Car carServiceRequest = databaseManager.getCar(carNumberServiceRequest);
-
-                                DateTime registredDateCarPart = DateTime.Now;
-                                CarPart carPart = new CarPart(
-                                    0, 
-                                    carServiceRequest.carId, 
-                                    carPartStatusServiceRequest, 
-                                    carPartNameServiceRequest, 
-                                    carPartDescriptionServiceRequest,
-                                    registredDateCarPart, 
-                                    Int32.Parse(carPartPriceServiceRequest));
-
-
-                            }
-                            else
-                            {
-                                Console.WriteLine("Some fields were left empty.Please complete them again!");
-                            }
-
+                            serviceRequest();
                             break;
 
                         case "8": // 8 - EXIT
@@ -248,6 +205,11 @@ namespace ServiceAutoApp.Logic
                             Console.WriteLine("You have selected option: 2 - Add new car");
 
                             addNewCar();
+                            break;
+                        case "3": // 3 - Service request
+                            Console.WriteLine("You have selected option: 3 - Service request");
+
+                            serviceRequest();
                             break;
                     }
                 }
@@ -382,6 +344,53 @@ namespace ServiceAutoApp.Logic
             else
             {
                 Console.WriteLine("Some fields were left empty. Please complete them again!");
+            }
+        }
+
+        private void serviceRequest()
+        {
+            Console.WriteLine("Add Customer ID: ");
+            string customerIDServiceRequest = userInput.getUserInput();
+
+            Console.WriteLine("Add car number: ");
+            string carNumberServiceRequest = userInput.getUserInput();
+
+            Console.WriteLine("Add car part name that needs to be replaced: ");
+            string carPartNameServiceRequest = userInput.getUserInput();
+
+            Console.WriteLine("Add car part description that needs to be replaced: ");
+            string carPartDescriptionServiceRequest = userInput.getUserInput();
+
+            Console.WriteLine("Add price: ");
+            string carPartPriceServiceRequest = userInput.getUserInput();
+
+            Console.WriteLine("Add status: ");
+            string carPartStatusServiceRequest = userInput.getUserInput();
+
+            if (!String.IsNullOrEmpty(customerIDServiceRequest) &&
+                !String.IsNullOrEmpty(carNumberServiceRequest) &&
+                !String.IsNullOrEmpty(carPartNameServiceRequest) &&
+                !String.IsNullOrEmpty(carPartDescriptionServiceRequest) &&
+                !String.IsNullOrEmpty(carPartPriceServiceRequest) &&
+                !String.IsNullOrEmpty(carPartStatusServiceRequest))
+            {
+                Car carServiceRequest = databaseManager.getCar(carNumberServiceRequest);
+
+                DateTime registredDateCarPart = DateTime.Now;
+                CarPart carPart = new CarPart(
+                    0,
+                    carServiceRequest.carId,
+                    carPartStatusServiceRequest,
+                    carPartNameServiceRequest,
+                    carPartDescriptionServiceRequest,
+                    registredDateCarPart,
+                    Int32.Parse(carPartPriceServiceRequest));
+
+                databaseManager.insertDataCarParts(carPart);
+            }
+            else
+            {
+                Console.WriteLine("Some fields were left empty.Please complete them again!");
             }
         }
     }

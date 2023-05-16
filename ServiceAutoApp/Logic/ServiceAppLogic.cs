@@ -2,9 +2,6 @@
 using ServiceAutoApp.Customers;
 using ServiceAutoApp.Database;
 using ServiceAutoApp.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ServiceAutoApp.Logic
 {
@@ -177,10 +174,6 @@ namespace ServiceAutoApp.Logic
                         
                         case "7": // 7 - Service request
                             Console.WriteLine("You have selected option: 7 - Service request");
-                            break;
-
-                        case "8": // 8 - EXIT
-                            Console.WriteLine("You have selected option: 8 - EXIT");
 
                             Console.WriteLine("Add Customer ID: ");
                             string customerIDServiceRequest = userInput.getUserInput();
@@ -200,8 +193,36 @@ namespace ServiceAutoApp.Logic
                             Console.WriteLine("Add status: ");
                             string carPartStatusServiceRequest = userInput.getUserInput();
 
-                            // TODO: finish logic
+                            if (!String.IsNullOrEmpty(customerIDServiceRequest) && 
+                                !String.IsNullOrEmpty(carNumberServiceRequest) && 
+                                !String.IsNullOrEmpty(carPartNameServiceRequest) && 
+                                !String.IsNullOrEmpty(carPartDescriptionServiceRequest) && 
+                                !String.IsNullOrEmpty(carPartPriceServiceRequest) && 
+                                !String.IsNullOrEmpty(carPartStatusServiceRequest))
+                            {
+                                Car carServiceRequest = databaseManager.getCar(carNumberServiceRequest);
 
+                                DateTime registredDateCarPart = DateTime.Now;
+                                CarPart carPart = new CarPart(
+                                    0, 
+                                    carServiceRequest.carId, 
+                                    carPartStatusServiceRequest, 
+                                    carPartNameServiceRequest, 
+                                    carPartDescriptionServiceRequest,
+                                    registredDateCarPart, 
+                                    Int32.Parse(carPartPriceServiceRequest));
+
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Some fields were left empty.Please complete them again!");
+                            }
+
+                            break;
+
+                        case "8": // 8 - EXIT
+                            Console.WriteLine("You have selected option: 8 - EXIT");
                             break;
                     }
                 }

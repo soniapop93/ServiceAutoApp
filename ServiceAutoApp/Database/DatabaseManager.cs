@@ -227,6 +227,42 @@ namespace ServiceAutoApp.Database
             return null;
         }
 
+        public Car getCar(string carNumber)
+        {
+            sqLiteConnection.Open();
+            SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
+
+            string strData = "SELECT * FROM Users WHERE carNumber = '" + carNumber + "';";
+            sqLiteCommand.CommandText = strData;
+            SQLiteDataReader allDBdata = sqLiteCommand.ExecuteReader();
+
+            Car car = getCarInfo(allDBdata);
+
+            allDBdata.Close();
+            sqLiteConnection.Close();
+
+            return car;
+        }
+
+        private Car getCarInfo(SQLiteDataReader allDBdata)
+        {
+            while (allDBdata.Read())
+            {
+                Car car = new Car(
+                    Int32.Parse(allDBdata[0].ToString()), 
+                    Int32.Parse(allDBdata[1].ToString()), 
+                    allDBdata[2].ToString(), 
+                    allDBdata[3].ToString(), 
+                    Int32.Parse(allDBdata[4].ToString()), 
+                    Int32.Parse(allDBdata[5].ToString()), 
+                    allDBdata[6].ToString(), 
+                    allDBdata[7].ToString(), 
+                    DateTime.Parse(allDBdata[8].ToString()));
+                return car;
+            }
+            return null;
+        }
+
         public void updateUserByUsername(string username, string field, string newInfo)
         {
             string strSql = "UPDATE Users Set " + field + " = '" + newInfo + "' WHERE username = '" + username + "';";

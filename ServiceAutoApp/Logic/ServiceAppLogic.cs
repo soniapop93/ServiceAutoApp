@@ -2,6 +2,7 @@
 using ServiceAutoApp.Customers;
 using ServiceAutoApp.Database;
 using ServiceAutoApp.Users;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace ServiceAutoApp.Logic
 {
@@ -35,7 +36,8 @@ namespace ServiceAutoApp.Logic
                         "5 - Add new car \n" +
                         "6 - Delete car \n" +
                         "7 - Service request \n" +
-                        "8 - EXIT";
+                        "8 - Update service request '\n" +
+                        "9 - EXIT";
                     
                     Console.WriteLine(optionMenu);
 
@@ -178,8 +180,12 @@ namespace ServiceAutoApp.Logic
                             serviceRequest();
                             break;
 
-                        case "8": // 8 - EXIT
-                            Console.WriteLine("You have selected option: 8 - EXIT");
+                        case "8": // 8 - Update service request
+                            //TODO: implement
+                            break;
+
+                        case "9": // 9 - EXIT
+                            Console.WriteLine("You have selected option: 9 - EXIT");
                             break;
                     }
                 }
@@ -189,7 +195,8 @@ namespace ServiceAutoApp.Logic
                         "1 - Add new customer \n" +
                         "2 - Add new car \n" +
                         "3 - Service request \n" +
-                        "4 - EXIT";
+                        "4 - Update service request \n" +
+                        "5 - EXIT";
 
                     Console.WriteLine(optionMenu);
 
@@ -210,6 +217,14 @@ namespace ServiceAutoApp.Logic
                             Console.WriteLine("You have selected option: 3 - Service request");
 
                             serviceRequest();
+                            break;
+
+                        case "4": // 4 - Update service request
+                            //TODO: implement
+                            break;
+
+                        case "5": // 5 - EXIT
+                            Console.WriteLine("You have selected option: 5 - EXIT");
                             break;
                     }
                 }

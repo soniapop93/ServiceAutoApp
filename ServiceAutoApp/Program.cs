@@ -15,7 +15,7 @@
             [X] possibility to register new customers
             [X] the customers can have multiple cars
             [X] every car should have a history that contains the parts changed, price, date, car number, color, km, owner, status
-            [ ] Admin/Normal user can update the status of the service request
+            [X] Admin/Normal user can update the status of the service request
            =============================================================
            =============================================================
         */

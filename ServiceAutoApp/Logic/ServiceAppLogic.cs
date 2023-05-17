@@ -2,7 +2,6 @@
 using ServiceAutoApp.Customers;
 using ServiceAutoApp.Database;
 using ServiceAutoApp.Users;
-using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace ServiceAutoApp.Logic
 {
@@ -10,6 +9,7 @@ namespace ServiceAutoApp.Logic
     {
         UserInput userInput = new UserInput();
         DatabaseManager databaseManager = new DatabaseManager();
+        static List<string> statusList = new List<string>() {"In progress", "Blocked", "Finished", "Waiting"};
         
         public void authUser()
         {
@@ -181,7 +181,9 @@ namespace ServiceAutoApp.Logic
                             break;
 
                         case "8": // 8 - Update service request
-                            //TODO: implement
+                            Console.WriteLine("You have selected option: 8 - Update service request");
+
+                            updateServiceRequestStatus();
                             break;
 
                         case "9": // 9 - EXIT
@@ -220,7 +222,9 @@ namespace ServiceAutoApp.Logic
                             break;
 
                         case "4": // 4 - Update service request
-                            //TODO: implement
+                            Console.WriteLine("You have selected option: 4 - Update service request");
+
+                            updateServiceRequestStatus();
                             break;
 
                         case "5": // 5 - EXIT
@@ -402,6 +406,31 @@ namespace ServiceAutoApp.Logic
                     Int32.Parse(carPartPriceServiceRequest));
 
                 databaseManager.insertDataCarParts(carPart);
+            }
+            else
+            {
+                Console.WriteLine("Some fields were left empty.Please complete them again!");
+            }
+        }
+
+        private void updateServiceRequestStatus()
+        {
+            Console.WriteLine("Please add the car part ID: ");
+            string carPartID = userInput.getUserInput();
+
+            Console.WriteLine("Please add the new status of the service request: ");
+            string newStatus = userInput.getUserInput();
+
+            if (!String.IsNullOrEmpty(carPartID) && !String.IsNullOrEmpty(newStatus))
+            {
+                if (statusList.Contains(newStatus))
+                {
+                    databaseManager.updateCarPart(Int32.Parse(carPartID), newStatus);
+                }
+                else
+                {
+                    Console.WriteLine("Status is not the expected one.Please complete it again!");
+                }
             }
             else
             {

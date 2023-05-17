@@ -277,6 +277,13 @@ namespace ServiceAutoApp.Database
             executeDataInDB(strSql);
         }
 
+        public void updateCarPart(int carPartID, string status)
+        {
+            string strSql = "UPDATE CarParts Set status = '" + status + "' WHERE id = " + carPartID + ";";
+
+            executeDataInDB(strSql);
+        }
+
         public void deleteCar(string carNumber)
         {
             string strSql = "DELETE FROM Cars WHERE carNumber = '" + carNumber + "';";

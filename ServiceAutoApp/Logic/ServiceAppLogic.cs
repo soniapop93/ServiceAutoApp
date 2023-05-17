@@ -46,7 +46,9 @@ namespace ServiceAutoApp.Logic
                     switch (selectedOption)
                     {
                         default:
+                            Console.WriteLine("No correct option selected. Please try again!");
                             break;
+
                         case "1": // 1 - Edit user
                             Console.WriteLine("You have selected option: 1 - Edit user");
                             Console.WriteLine("Please select how you want to search the user by: \n" +
@@ -57,7 +59,7 @@ namespace ServiceAutoApp.Logic
                                         "1 - Username \n" +
                                         "2 - Password \n" +
                                         "3 - First Name \n" +
-                                        "4 - Last Name\n" +
+                                        "4 - Last Name \n" +
                                         "5 - Email \n" +
                                         "6 - Phone \n" +
                                         "7 - Address \n" +
@@ -67,7 +69,9 @@ namespace ServiceAutoApp.Logic
                             switch (optionField)
                             {
                                 default:
+                                    Console.WriteLine("No correct option selected. Please try again!");
                                     break;
+
                                 case "1": // 1 - Username
                                     Console.WriteLine("Please add the username: ");
                                     string usernameInputToUpdate = userInput.getUserInput();
@@ -89,6 +93,7 @@ namespace ServiceAutoApp.Logic
                                         Console.WriteLine("No correct option selected");
                                     }
                                     break;
+
                                 case "2": // 2 - User ID
                                     Console.WriteLine("Please add the user ID: ");
                                     int userIdInputToUpdate = Int32.Parse(userInput.getUserInput());
@@ -204,6 +209,10 @@ namespace ServiceAutoApp.Logic
 
                    switch (optionMenu)
                     {
+                        default:
+                            Console.WriteLine("No correct option selected. Please try again!");
+                            break;
+
                         case "1": // 1 - Add new customer
                             Console.WriteLine("You have selected option: 1 - Add new customer");
 

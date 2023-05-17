@@ -22,7 +22,6 @@
 
         Console.WriteLine("------------------------ SCRIPT STARTED ------------------------");
 
-       
 
         Console.WriteLine("------------------------ SCRIPT FINISHED ------------------------");
     }

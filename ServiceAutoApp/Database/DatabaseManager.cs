@@ -1,7 +1,6 @@
 ﻿using System.Data.SQLite;
 using ServiceAutoApp.Customers;
 using ServiceAutoApp.Users;
-using ServiceAutoApp.Customers;
 using ServiceAutoApp.Cars;
 
 namespace ServiceAutoApp.Database

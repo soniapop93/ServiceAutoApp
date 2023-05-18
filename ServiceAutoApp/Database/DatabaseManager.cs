@@ -22,6 +22,7 @@ namespace ServiceAutoApp.Database
             createTableUsers();
             createTableCustomers();
             createTableCars();
+            createTableCarParts();
         }
 
         private void createConnection(string fileNamePath)
@@ -232,7 +233,7 @@ namespace ServiceAutoApp.Database
             sqLiteConnection.Open();
             SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
 
-            string strData = "SELECT * FROM Users WHERE carNumber = '" + carNumber + "';";
+            string strData = "SELECT * FROM Cars WHERE carNumber = '" + carNumber + "';";
             sqLiteCommand.CommandText = strData;
             SQLiteDataReader allDBdata = sqLiteCommand.ExecuteReader();
 

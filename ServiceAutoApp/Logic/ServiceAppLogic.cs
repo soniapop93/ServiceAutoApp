@@ -30,16 +30,17 @@ namespace ServiceAutoApp.Logic
                 {
                     if (adminUser)
                     {
-                        string optionMenu = "Option menu: " +
-                            "1 - Edit user \n" +
-                            "2 - Delete user \n" +
-                            "3 - Add new customer \n" +
-                            "4 - Delete customer \n" +
-                            "5 - Add new car \n" +
-                            "6 - Delete car \n" +
-                            "7 - Service request \n" +
-                            "8 - Update service request '\n" +
-                            "9 - EXIT";
+                        string optionMenu = "Option menu: \n" +
+                            "1 - Add new user \n" +
+                            "2 - Edit user \n" +
+                            "3 - Delete user \n" +
+                            "4 - Add new customer \n" +
+                            "5 - Delete customer \n" +
+                            "6 - Add new car \n" +
+                            "7 - Delete car \n" +
+                            "8 - Service request \n" +
+                            "9 - Update service request \n" +
+                            "10 - EXIT";
 
                         Console.WriteLine(optionMenu);
 
@@ -51,8 +52,41 @@ namespace ServiceAutoApp.Logic
                                 Console.WriteLine("No correct option selected. Please try again!");
                                 break;
 
-                            case "1": // 1 - Edit user
-                                Console.WriteLine("You have selected option: 1 - Edit user");
+                            case "1": // 1 - Add new user
+                                Console.WriteLine("You have selected option: 1 - Add new user");
+
+                                Console.WriteLine("Username: ");
+                                string usernameNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Password: ");
+                                string passwordNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("First name: ");
+                                string firstNameNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Last name: ");
+                                string lastNameNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Email: ");
+                                string emailNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Phone: ");
+                                string phoneNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Address: ");
+                                string addressNewUser = userInput.getUserInput();
+
+                                Console.WriteLine("Admin (yes/no): ");
+                                string adminNewUser = userInput.getUserInput();
+
+                                //TODO: continue the implementation
+
+
+                                break;
+
+                            case "2": // 2 - Edit user
+                                Console.WriteLine("You have selected option: 2 - Edit user");
+
                                 Console.WriteLine("Please select how you want to search the user by: \n" +
                                     "1 - Username \n" +
                                     "2 - User ID");
@@ -121,8 +155,8 @@ namespace ServiceAutoApp.Logic
                                 }
                                 break;
 
-                            case "2": // 2 - Delete user
-                                Console.WriteLine("You have selected option: 2 - Delete user");
+                            case "3": // 3 - Delete user
+                                Console.WriteLine("You have selected option: 3 - Delete user");
 
                                 Console.WriteLine("Add User ID you want to delete: ");
                                 string userIdDelete = userInput.getUserInput();
@@ -137,14 +171,14 @@ namespace ServiceAutoApp.Logic
                                 }
                                 break;
 
-                            case "3": // 3 - Add new customer
-                                Console.WriteLine("You have selected option: 3 - Add new customer");
+                            case "4": // 4 - Add new customer
+                                Console.WriteLine("You have selected option: 4 - Add new customer");
 
                                 addNewCustomer();
                                 break;
 
-                            case "4": // 4 - Delete customer
-                                Console.WriteLine("You have selected option: 4 - Delete customer");
+                            case "5": // 5 - Delete customer
+                                Console.WriteLine("You have selected option: 5 - Delete customer");
 
                                 Console.WriteLine("Customer ID you want to delete: ");
                                 string deleteCustomerID = userInput.getUserInput();
@@ -159,14 +193,14 @@ namespace ServiceAutoApp.Logic
                                 }
                                 break;
 
-                            case "5": // 5 - Add new car
-                                Console.WriteLine("You have selected option: 5 - Add new car");
+                            case "6": // 6 - Add new car
+                                Console.WriteLine("You have selected option: 6 - Add new car");
 
                                 addNewCar();
                                 break;
 
-                            case "6": // 6 - Delete car
-                                Console.WriteLine("You have selected option: 6 - Delete car");
+                            case "7": // 7 - Delete car
+                                Console.WriteLine("You have selected option: 7 - Delete car");
                                 Console.WriteLine("Car number you want to delete: ");
 
                                 string deleteCarNumber = userInput.getUserInput();
@@ -181,20 +215,20 @@ namespace ServiceAutoApp.Logic
                                 }
                                 break;
 
-                            case "7": // 7 - Service request
-                                Console.WriteLine("You have selected option: 7 - Service request");
+                            case "8": // 8 - Service request
+                                Console.WriteLine("You have selected option: 8 - Service request");
 
                                 serviceRequest();
                                 break;
 
-                            case "8": // 8 - Update service request
-                                Console.WriteLine("You have selected option: 8 - Update service request");
+                            case "9": // 9 - Update service request
+                                Console.WriteLine("You have selected option: 9 - Update service request");
 
                                 updateServiceRequestStatus();
                                 break;
 
-                            case "9": // 9 - EXIT
-                                Console.WriteLine("You have selected option: 9 - EXIT");
+                            case "10": // 10 - EXIT
+                                Console.WriteLine("You have selected option: 10 - EXIT");
                                 return;
                                 break;
                         }

@@ -10,7 +10,6 @@
         public int engineCapacity { get; set; }
         public string fuelType { get; set; }
         public string color { get; set; }
-        List<CarPart> carParts { get; set; } = new List<CarPart>();
         public DateTime registrationDate { get; set; }
 
         public Car(

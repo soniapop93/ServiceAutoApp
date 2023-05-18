@@ -171,6 +171,7 @@ namespace ServiceAutoApp.Database
                 car.vinNumber + "'," +
                 car.year + "," +
                 car.engineCapacity + ",'" +
+                car.fuelType + "','" +
                 car.color + "','" +
                 car.registrationDate.ToString() + "');";
 
@@ -191,7 +192,7 @@ namespace ServiceAutoApp.Database
             sqLiteConnection.Open();
             SQLiteCommand sqLiteCommand = sqLiteConnection.CreateCommand();
 
-            string strData = "SELECT * FROM Users WHERE username = " + username + ";";
+            string strData = "SELECT * FROM Users WHERE username = '" + username + "';";
             sqLiteCommand.CommandText = strData;
             SQLiteDataReader allDBdata = sqLiteCommand.ExecuteReader();
 
@@ -207,7 +208,7 @@ namespace ServiceAutoApp.Database
         {
             while (allDBdata.Read())
             {
-                if (password.Equals(allDBdata[3].ToString()) {
+                if (password.Equals(allDBdata[2].ToString())) {
                     User user = new User(
                         Int32.Parse(allDBdata[0].ToString()), 
                         allDBdata[1].ToString(), 
@@ -218,7 +219,7 @@ namespace ServiceAutoApp.Database
                         allDBdata[6].ToString(), 
                         allDBdata[7].ToString(), 
                         DateTime.Parse(allDBdata[8].ToString()), 
-                        Boolean.Parse(allDBdata[8].ToString()));
+                        Boolean.Parse(allDBdata[9].ToString()));
 
                     return user;
                 }

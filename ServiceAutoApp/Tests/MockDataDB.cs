@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ServiceAutoApp.Tests
 {
-    internal class MockDataDB
+    public class MockDataDB
     {
+        public void addTestUsersInDB()
+        {
+
+        }
     }
 }

@@ -26,221 +26,227 @@ namespace ServiceAutoApp.Logic
                 bool adminUser = user.adminUser;
                 Console.WriteLine("Login successfull as " + (adminUser ? "ADMIN" : "NORMAL") + " user");
 
-                if (adminUser)
+                while (true) 
                 {
-                    string optionMenu = "Option menu: " +
-                        "1 - Edit user \n" +
-                        "2 - Delete user \n" +
-                        "3 - Add new customer \n" +
-                        "4 - Delete customer \n" +
-                        "5 - Add new car \n" +
-                        "6 - Delete car \n" +
-                        "7 - Service request \n" +
-                        "8 - Update service request '\n" +
-                        "9 - EXIT";
-                    
-                    Console.WriteLine(optionMenu);
-
-                    string selectedOption = userInput.getUserInput();
-                    
-                    switch (selectedOption)
+                    if (adminUser)
                     {
-                        default:
-                            Console.WriteLine("No correct option selected. Please try again!");
-                            break;
+                        string optionMenu = "Option menu: " +
+                            "1 - Edit user \n" +
+                            "2 - Delete user \n" +
+                            "3 - Add new customer \n" +
+                            "4 - Delete customer \n" +
+                            "5 - Add new car \n" +
+                            "6 - Delete car \n" +
+                            "7 - Service request \n" +
+                            "8 - Update service request '\n" +
+                            "9 - EXIT";
 
-                        case "1": // 1 - Edit user
-                            Console.WriteLine("You have selected option: 1 - Edit user");
-                            Console.WriteLine("Please select how you want to search the user by: \n" +
-                                "1 - Username \n" +
-                                "2 - User ID");
+                        Console.WriteLine(optionMenu);
 
-                            string fieldsToEdit = "Fields available to edit, please choose one from: \n" +
-                                        "1 - Username \n" +
-                                        "2 - Password \n" +
-                                        "3 - First Name \n" +
-                                        "4 - Last Name \n" +
-                                        "5 - Email \n" +
-                                        "6 - Phone \n" +
-                                        "7 - Address \n" +
-                                        "8 - Admin";
+                        string selectedOption = userInput.getUserInput();
 
-                            string optionField = userInput.getUserInput();
-                            switch (optionField)
-                            {
-                                default:
-                                    Console.WriteLine("No correct option selected. Please try again!");
-                                    break;
+                        switch (selectedOption)
+                        {
+                            default:
+                                Console.WriteLine("No correct option selected. Please try again!");
+                                break;
 
-                                case "1": // 1 - Username
-                                    Console.WriteLine("Please add the username: ");
-                                    string usernameInputToUpdate = userInput.getUserInput();
+                            case "1": // 1 - Edit user
+                                Console.WriteLine("You have selected option: 1 - Edit user");
+                                Console.WriteLine("Please select how you want to search the user by: \n" +
+                                    "1 - Username \n" +
+                                    "2 - User ID");
 
-                                    Console.WriteLine(fieldsToEdit);
+                                string fieldsToEdit = "Fields available to edit, please choose one from: \n" +
+                                            "1 - Username \n" +
+                                            "2 - Password \n" +
+                                            "3 - First Name \n" +
+                                            "4 - Last Name \n" +
+                                            "5 - Email \n" +
+                                            "6 - Phone \n" +
+                                            "7 - Address \n" +
+                                            "8 - Admin";
 
-                                    string optionToEditUsername = userInput.getUserInput();
+                                string optionField = userInput.getUserInput();
+                                switch (optionField)
+                                {
+                                    default:
+                                        Console.WriteLine("No correct option selected. Please try again!");
+                                        break;
 
-                                    string fieldUsername = switchEditUserByAdmin(optionToEditUsername);
+                                    case "1": // 1 - Username
+                                        Console.WriteLine("Please add the username: ");
+                                        string usernameInputToUpdate = userInput.getUserInput();
 
-                                    if (!String.IsNullOrEmpty(fieldUsername))
-                                    {
-                                        Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
-                                        string newInfo = userInput.getUserInput();
-                                        databaseManager.updateUserByUsername(usernameInputToUpdate, fieldUsername, newInfo);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("No correct option selected");
-                                    }
-                                    break;
+                                        Console.WriteLine(fieldsToEdit);
 
-                                case "2": // 2 - User ID
-                                    Console.WriteLine("Please add the user ID: ");
-                                    int userIdInputToUpdate = Int32.Parse(userInput.getUserInput());
+                                        string optionToEditUsername = userInput.getUserInput();
 
-                                    Console.WriteLine(fieldsToEdit);
+                                        string fieldUsername = switchEditUserByAdmin(optionToEditUsername);
 
-                                    string optionToEditID = userInput.getUserInput();
+                                        if (!String.IsNullOrEmpty(fieldUsername))
+                                        {
+                                            Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
+                                            string newInfo = userInput.getUserInput();
+                                            databaseManager.updateUserByUsername(usernameInputToUpdate, fieldUsername, newInfo);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("No correct option selected");
+                                        }
+                                        break;
 
-                                    string fieldID = switchEditUserByAdmin(optionToEditID);
+                                    case "2": // 2 - User ID
+                                        Console.WriteLine("Please add the user ID: ");
+                                        int userIdInputToUpdate = Int32.Parse(userInput.getUserInput());
 
-                                    if(!String.IsNullOrEmpty(fieldID))
-                                    {
-                                        Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
-                                        string newInfo = userInput.getUserInput();
-                                        databaseManager.updateUserByID(userIdInputToUpdate, fieldID, newInfo);
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("No correct option selected");
-                                    }
+                                        Console.WriteLine(fieldsToEdit);
 
-                                    break;
-                            }
-                            break;
+                                        string optionToEditID = userInput.getUserInput();
 
-                        case "2": // 2 - Delete user
-                            Console.WriteLine("You have selected option: 2 - Delete user");
+                                        string fieldID = switchEditUserByAdmin(optionToEditID);
 
-                            Console.WriteLine("Add User ID you want to delete: ");
-                            string userIdDelete = userInput.getUserInput();
+                                        if (!String.IsNullOrEmpty(fieldID))
+                                        {
+                                            Console.WriteLine("You have selected option: " + optionField + "\nPlease add the new information: ");
+                                            string newInfo = userInput.getUserInput();
+                                            databaseManager.updateUserByID(userIdInputToUpdate, fieldID, newInfo);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("No correct option selected");
+                                        }
 
-                            if (!String.IsNullOrEmpty(userIdDelete))
-                            {
-                                databaseManager.deleteUser(Int32.Parse(userIdDelete));
-                            }
-                            else
-                            {
-                                Console.Write("Some fields were left empty. Please complete them again!");
-                            }
-                            break;
+                                        break;
+                                }
+                                break;
 
-                        case "3": // 3 - Add new customer
-                            Console.WriteLine("You have selected option: 3 - Add new customer");
+                            case "2": // 2 - Delete user
+                                Console.WriteLine("You have selected option: 2 - Delete user");
 
-                            addNewCustomer();
-                            break;
+                                Console.WriteLine("Add User ID you want to delete: ");
+                                string userIdDelete = userInput.getUserInput();
 
-                        case "4": // 4 - Delete customer
-                            Console.WriteLine("You have selected option: 4 - Delete customer");
-                            
-                            Console.WriteLine("Customer ID you want to delete: ");
-                            string deleteCustomerID = userInput.getUserInput();
+                                if (!String.IsNullOrEmpty(userIdDelete))
+                                {
+                                    databaseManager.deleteUser(Int32.Parse(userIdDelete));
+                                }
+                                else
+                                {
+                                    Console.Write("Some fields were left empty. Please complete them again!");
+                                }
+                                break;
 
-                            if (!String.IsNullOrEmpty(deleteCustomerID))
-                            {
-                                databaseManager.deteleCustomer(Int32.Parse(deleteCustomerID));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Some fields were left empty.Please complete them again!");
-                            }
-                            break;
+                            case "3": // 3 - Add new customer
+                                Console.WriteLine("You have selected option: 3 - Add new customer");
 
-                        case "5": // 5 - Add new car
-                            Console.WriteLine("You have selected option: 5 - Add new car");
+                                addNewCustomer();
+                                break;
 
-                            addNewCar();
-                            break;
+                            case "4": // 4 - Delete customer
+                                Console.WriteLine("You have selected option: 4 - Delete customer");
 
-                        case "6": // 6 - Delete car
-                            Console.WriteLine("You have selected option: 6 - Delete car");
-                            Console.WriteLine("Car number you want to delete: ");
-                            
-                            string deleteCarNumber = userInput.getUserInput();
-                            
-                            if (!String.IsNullOrEmpty(deleteCarNumber))
-                            {
-                                databaseManager.deleteCar(deleteCarNumber);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Some fields were left empty.Please complete them again!");
-                            }
-                            break;
-                        
-                        case "7": // 7 - Service request
-                            Console.WriteLine("You have selected option: 7 - Service request");
+                                Console.WriteLine("Customer ID you want to delete: ");
+                                string deleteCustomerID = userInput.getUserInput();
 
-                            serviceRequest();
-                            break;
+                                if (!String.IsNullOrEmpty(deleteCustomerID))
+                                {
+                                    databaseManager.deteleCustomer(Int32.Parse(deleteCustomerID));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Some fields were left empty.Please complete them again!");
+                                }
+                                break;
 
-                        case "8": // 8 - Update service request
-                            Console.WriteLine("You have selected option: 8 - Update service request");
+                            case "5": // 5 - Add new car
+                                Console.WriteLine("You have selected option: 5 - Add new car");
 
-                            updateServiceRequestStatus();
-                            break;
+                                addNewCar();
+                                break;
 
-                        case "9": // 9 - EXIT
-                            Console.WriteLine("You have selected option: 9 - EXIT");
-                            break;
+                            case "6": // 6 - Delete car
+                                Console.WriteLine("You have selected option: 6 - Delete car");
+                                Console.WriteLine("Car number you want to delete: ");
+
+                                string deleteCarNumber = userInput.getUserInput();
+
+                                if (!String.IsNullOrEmpty(deleteCarNumber))
+                                {
+                                    databaseManager.deleteCar(deleteCarNumber);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Some fields were left empty.Please complete them again!");
+                                }
+                                break;
+
+                            case "7": // 7 - Service request
+                                Console.WriteLine("You have selected option: 7 - Service request");
+
+                                serviceRequest();
+                                break;
+
+                            case "8": // 8 - Update service request
+                                Console.WriteLine("You have selected option: 8 - Update service request");
+
+                                updateServiceRequestStatus();
+                                break;
+
+                            case "9": // 9 - EXIT
+                                Console.WriteLine("You have selected option: 9 - EXIT");
+                                return;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        string optionMenu = "Option menu: " +
+                            "1 - Add new customer \n" +
+                            "2 - Add new car \n" +
+                            "3 - Service request \n" +
+                            "4 - Update service request \n" +
+                            "5 - EXIT";
+
+                        Console.WriteLine(optionMenu);
+
+                        switch (optionMenu)
+                        {
+                            default:
+                                Console.WriteLine("No correct option selected. Please try again!");
+                                break;
+
+                            case "1": // 1 - Add new customer
+                                Console.WriteLine("You have selected option: 1 - Add new customer");
+
+                                addNewCustomer();
+                                break;
+
+                            case "2": // 2 - Add new car
+                                Console.WriteLine("You have selected option: 2 - Add new car");
+
+                                addNewCar();
+                                break;
+                            case "3": // 3 - Service request
+                                Console.WriteLine("You have selected option: 3 - Service request");
+
+                                serviceRequest();
+                                break;
+
+                            case "4": // 4 - Update service request
+                                Console.WriteLine("You have selected option: 4 - Update service request");
+
+                                updateServiceRequestStatus();
+                                break;
+
+                            case "5": // 5 - EXIT
+                                Console.WriteLine("You have selected option: 5 - EXIT");
+                                return;
+                                break;
+                        }
                     }
                 }
-                else
-                {
-                    string optionMenu = "Option menu: " +
-                        "1 - Add new customer \n" +
-                        "2 - Add new car \n" +
-                        "3 - Service request \n" +
-                        "4 - Update service request \n" +
-                        "5 - EXIT";
-
-                    Console.WriteLine(optionMenu);
-
-                   switch (optionMenu)
-                    {
-                        default:
-                            Console.WriteLine("No correct option selected. Please try again!");
-                            break;
-
-                        case "1": // 1 - Add new customer
-                            Console.WriteLine("You have selected option: 1 - Add new customer");
-
-                            addNewCustomer();
-                            break;
-
-                        case "2": // 2 - Add new car
-                            Console.WriteLine("You have selected option: 2 - Add new car");
-
-                            addNewCar();
-                            break;
-                        case "3": // 3 - Service request
-                            Console.WriteLine("You have selected option: 3 - Service request");
-
-                            serviceRequest();
-                            break;
-
-                        case "4": // 4 - Update service request
-                            Console.WriteLine("You have selected option: 4 - Update service request");
-
-                            updateServiceRequestStatus();
-                            break;
-
-                        case "5": // 5 - EXIT
-                            Console.WriteLine("You have selected option: 5 - EXIT");
-                            break;
-                    }
-                }
+                
             }
         }
 

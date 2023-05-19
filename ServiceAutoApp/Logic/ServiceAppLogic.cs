@@ -208,9 +208,9 @@ namespace ServiceAutoApp.Logic
                                 break;
                         }
                     }
-                    else
+                    else if(adminUser == false)
                     {
-                        string optionMenu = "Option menu: " +
+                        string optionMenu = "Option menu: \n" +
                             "1 - Add new customer \n" +
                             "2 - Add new car \n" +
                             "3 - Service request \n" +
@@ -219,7 +219,9 @@ namespace ServiceAutoApp.Logic
 
                         Console.WriteLine(optionMenu);
 
-                        switch (optionMenu)
+                        string selectedOption = userInput.getUserInput();
+
+                        switch (selectedOption)
                         {
                             default:
                                 Console.WriteLine("No correct option selected. Please try again!");
@@ -254,8 +256,11 @@ namespace ServiceAutoApp.Logic
                                 break;
                         }
                     }
+                    else
+                    {
+                        return;
+                    }
                 }
-                
             }
         }
 
@@ -510,7 +515,7 @@ namespace ServiceAutoApp.Logic
                     phoneNewUser,
                     addressNewUser,
                     registredDateNewUser,
-                    (adminUser.Equals("yes") ? true : false));
+                    (adminNewUser.Equals("yes") ? true : false));
 
                 databaseManager.insertDataUsers(newUser);
             }

@@ -27,7 +27,6 @@ public class Program
 
         Console.WriteLine("------------------------ SCRIPT STARTED ------------------------");
 
-
         ServiceAppLogic serviceAutoApp = new ServiceAppLogic();
         serviceAutoApp.authUser();
 

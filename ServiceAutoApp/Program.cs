@@ -27,12 +27,6 @@ public class Program
 
         Console.WriteLine("------------------------ SCRIPT STARTED ------------------------");
 
-        // FOR TESTING ONLY
-        //DatabaseManager databaseManager = new DatabaseManager();
-        //DateTime testDate = DateTime.Now;
-        //User testUser = new User(0, "testadmin", "testadmin", "Test", "Admin", "testadmin@email.com", "0746111111", "str Test", testDate, true);
-        //databaseManager.insertDataUsers(testUser);
-
 
         ServiceAppLogic serviceAutoApp = new ServiceAppLogic();
         serviceAutoApp.authUser();

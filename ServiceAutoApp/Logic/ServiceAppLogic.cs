@@ -55,32 +55,7 @@ namespace ServiceAutoApp.Logic
                             case "1": // 1 - Add new user
                                 Console.WriteLine("You have selected option: 1 - Add new user");
 
-                                Console.WriteLine("Username: ");
-                                string usernameNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Password: ");
-                                string passwordNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("First name: ");
-                                string firstNameNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Last name: ");
-                                string lastNameNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Email: ");
-                                string emailNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Phone: ");
-                                string phoneNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Address: ");
-                                string addressNewUser = userInput.getUserInput();
-
-                                Console.WriteLine("Admin (yes/no): ");
-                                string adminNewUser = userInput.getUserInput();
-
-                                //TODO: continue the implementation
-
+                                addNewUser();
 
                                 break;
 
@@ -480,6 +455,64 @@ namespace ServiceAutoApp.Logic
                 {
                     Console.WriteLine("Status is not the expected one.Please complete it again!");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Some fields were left empty.Please complete them again!");
+            }
+        }
+
+        private void addNewUser()
+        {
+            Console.WriteLine("Username: ");
+            string usernameNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Password: ");
+            string passwordNewUser = userInput.getUserInput();
+
+            Console.WriteLine("First name: ");
+            string firstNameNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Last name: ");
+            string lastNameNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Email: ");
+            string emailNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Phone: ");
+            string phoneNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Address: ");
+            string addressNewUser = userInput.getUserInput();
+
+            Console.WriteLine("Admin (yes/no): ");
+            string adminNewUser = userInput.getUserInput();
+
+            if (!String.IsNullOrEmpty(usernameNewUser) &&
+                !String.IsNullOrEmpty(passwordNewUser) &&
+                !String.IsNullOrEmpty(firstNameNewUser) &&
+                !String.IsNullOrEmpty(lastNameNewUser) &&
+                !String.IsNullOrEmpty(emailNewUser) &&
+                !String.IsNullOrEmpty(phoneNewUser) &&
+                !String.IsNullOrEmpty(addressNewUser) &&
+                !String.IsNullOrEmpty(adminNewUser) &&
+                (adminNewUser.Equals("no") || adminNewUser.Equals("yes")))
+            {
+                DateTime registredDateNewUser = DateTime.Now;
+
+                User newUser = new User(
+                    0,
+                    usernameNewUser,
+                    passwordNewUser,
+                    firstNameNewUser,
+                    lastNameNewUser,
+                    emailNewUser,
+                    phoneNewUser,
+                    addressNewUser,
+                    registredDateNewUser,
+                    (adminUser.Equals("yes") ? true : false));
+
+                databaseManager.insertDataUsers(newUser);
             }
             else
             {

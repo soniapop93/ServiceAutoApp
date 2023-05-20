@@ -15,7 +15,7 @@ public class Program
 
             [X] the person that is on the shift at the auto service should authenticate with a user
             [X] the following type of users should have different permissions
-                [X] Normal user
+                [X] Normal user -> can only add new customers, new car, make a service request and update the status of the request
                 [X] Admin user -> this user is the only one that can delete/create/update the normal user
             [X] possibility to register new customers
             [X] the customers can have multiple cars
@@ -26,6 +26,7 @@ public class Program
         */
 
         Console.WriteLine("------------------------ SCRIPT STARTED ------------------------");
+
 
         ServiceAppLogic serviceAutoApp = new ServiceAppLogic();
         serviceAutoApp.authUser();
